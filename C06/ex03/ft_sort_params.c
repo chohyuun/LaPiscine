@@ -1,35 +1,17 @@
 #include<unistd.h>
 
-char	*ft_strcpy(char *dest, char *src)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
 	i = 0;
-	while (src[i] != '\0')
+	while (s1[i] == s2[i])
 	{
-		dest[i] = src[i];
+		if (s1[i] == '\0')
+			return (0);
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-void	sort(char *s1, char *s2, char *temp)
-{
-	int		k;
-
-	k = 0;
-	while (s1[k] && s2[k])
-	{
-		if (s1[k] > s2[k])
-		{
-			ft_strcpy(temp, s1);
-			ft_strcpy(s1, s2);
-			ft_strcpy(s2, temp);
-			return ;
-		}
-		k++;
-	}
+	return (s1[i] - s2[i]);
 }
 
 void	ft_print(char *str)
@@ -56,7 +38,12 @@ int	main(int argc, char **argv)
 		j = i + 1;
 		while (j < argc)
 		{
-			sort(argv[i], argv[j], tmp);
+			if (ft_strcmp(argv[i], argv[j]) > 0)
+			{
+				tmp = argv[i];
+				argv[i] = argv[j];
+				argv[j] = tmp;
+			}
 			j++;
 		}
 		i++;
