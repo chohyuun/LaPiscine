@@ -6,7 +6,7 @@
 /*   By: hyucho <hyucho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 16:00:23 by hyucho            #+#    #+#             */
-/*   Updated: 2021/09/26 17:45:27 by hyucho           ###   ########.fr       */
+/*   Updated: 2021/09/28 16:16:38 by hyucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<unistd.h>
@@ -45,7 +45,7 @@ int	check_base(char *base)
 	return (1);
 }
 
-void	base_sys(char *base, int nbr, int leng, int tm)
+void	base_sys(char *base, unsigned int nbr, int leng, int tm)
 {
 	char	a;
 
@@ -63,19 +63,23 @@ void	base_sys(char *base, int nbr, int leng, int tm)
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	int	leng;
-	int	tm;
+	int				leng;
+	int				tm;
+	unsigned int	num;
 
 	tm = 1;
 	leng = length(base);
+	num = 0;
 	if (!(check_base(base)))
 		return ;
 	if (nbr < 0)
 	{
+		num = (unsigned int)(nbr * -1);
 		write(1, "-", 1);
-		nbr *= -1;
 	}
-	if (nbr == 0)
+	else
+		num = (unsigned int)nbr;
+	if (num == 0)
 		tm = 0;
-	base_sys(base, nbr, leng, tm);
+	base_sys(base, num, leng, tm);
 }

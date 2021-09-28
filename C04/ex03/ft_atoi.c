@@ -6,7 +6,7 @@
 /*   By: hyucho <hyucho@student.42Seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 13:09:55 by hyucho            #+#    #+#             */
-/*   Updated: 2021/09/27 20:10:07 by hyucho           ###   ########.fr       */
+/*   Updated: 2021/09/28 14:57:21 by hyucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_alpha(char num)
 
 int	check_space(char num)
 {
-	if ((num > 8 && num < 14) && num == ' ')
+	if ((num > 8 && num < 14) || num == ' ')
 		return (1);
 	return (0);
 }
@@ -37,23 +37,20 @@ int	ft_atoi(char *str)
 	int	minus;
 	int	num;
 
-	i = -1;
+	i = 0;
 	num = 0;
 	minus = 1;
-	while (1)
-		if (!(check_space(str[++i])))
-			break ;
-	while (str[i] != '\0')
+	while (check_space(str[i]))
+		i++;
+	while (str[i] == '-' || str[i] == '+')
 	{
-		if (i != 0 && !(check_num(str[i])) && check_num(str[i - 1]))
-			break ;
-		else if ((str[i] == '-' || str[i] == '+') && \
-				(check_alpha(str[i + 1]) || check_space(str[i + 1])))
-			break ;
-		else if (str[i] == '-')
+		if (str[i] == '-')
 			minus *= -1;
-		else if (check_num(str[i]))
-			num = (num * 10) + (str[i] - '0');
+		i++;
+	}
+	while (check_num(str[i]))
+	{
+		num = (num * 10) + (str[i] - '0');
 		i++;
 	}
 	return (num * minus);
