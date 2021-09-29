@@ -6,7 +6,7 @@
 /*   By: hyucho <hyucho@student.42Seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 13:41:18 by hyucho            #+#    #+#             */
-/*   Updated: 2021/09/27 15:41:06 by hyucho           ###   ########.fr       */
+/*   Updated: 2021/09/29 17:03:51 by hyucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 int	ft_is_prime(int nb)
@@ -15,11 +15,12 @@ int	ft_is_prime(int nb)
 
 	if (nb < 2)
 		return (0);
-	i = 1;
-	while (++i < nb)
+	i = 2;
+	while (i <= (nb / i))
 	{
 		if (nb % i == 0)
 			return (0);
+		i++;
 	}
 	return (1);
 }
