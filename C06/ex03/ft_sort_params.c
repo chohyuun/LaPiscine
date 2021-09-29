@@ -31,8 +31,6 @@ int	main(int argc, char **argv)
 	char	*tmp;
 
 	i = 1;
-	if (argc == 2)
-		ft_print(argv[1]);
 	while (i < argc - 1)
 	{
 		j = i + 1;
