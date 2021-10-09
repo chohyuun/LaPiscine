@@ -46,6 +46,8 @@ void	ft_print_combn(int n)
 	 int	index;
 	char	arrychar[10];
 
+	if (n < 1 || n > 9)
+		return ;
 	index = -1;
 	while (++index < n)
 		arrychar[index] = index + '0';
@@ -58,4 +60,17 @@ void	ft_print_combn(int n)
 			ft_run(n, arrychar);
 		print(arrychar, n, 1);
 	}
+}
+int main(int argc, char **argv)
+{
+	int i;
+
+	if (argc == 1 || argc > 2 || argv[1][1] != '\0')
+		write(1, "\n", 1);
+	else
+	{
+		i = argv[1][0] - '0';
+		ft_print_combn(i);
+	}
+	return (0);
 }
