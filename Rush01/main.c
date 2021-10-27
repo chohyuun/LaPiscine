@@ -76,5 +76,6 @@ int	main(int argc, char *argv[])
 	{
 		result_print(result);
 	}
+	free_arry(result);
 	return (0);
 }
